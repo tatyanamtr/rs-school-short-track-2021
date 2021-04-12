@@ -12,27 +12,17 @@
 function sortByHeight(arr) {
   const newarr = [];
   const result = [];
-  let n = 0;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] !== -1) {
       newarr.push(arr[i]);
     }
   }
-  for (const i of newarr) {
-    for (let j = 0; j < newarr.length; j++) {
-      if (newarr[j] > newarr[j + 1]) {
-        newarr[j] += newarr[j + 1];
-        newarr[j + 1] = newarr[j] - newarr[j + 1];
-        newarr[j] -= newarr[j + 1];
-      }
-    }
-  }
-  for (const i of arr) {
-    if (i === -1) {
+  newarr.sort((a, b) => a - b);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === -1) {
       result.push(-1);
     } else {
-      result.push(newarr[n]);
-      n++;
+      result.push(newarr.shift());
     }
   }
   return result;
